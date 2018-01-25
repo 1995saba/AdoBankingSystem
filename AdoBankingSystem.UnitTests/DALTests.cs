@@ -119,7 +119,7 @@ namespace AdoBankingSystem.UnitTests
         [TestMethod]
         public void BankClientDao_Update()
         {
-            BankClientDto dto = new BankClientDto("UpdatedClient", "UpdatedClient", "UpdatedClient", "UpdatedClient", "UpdatedClient");
+            BankClientDto dto = new BankClientDto("uc", "uc", "uc", "uc", "uc");
             dto.Id = "1";
             BankClientDao dao = new BankClientDao();
 
@@ -131,7 +131,7 @@ namespace AdoBankingSystem.UnitTests
         [TestMethod]
         public void BankManagerDao_Update()
         {
-            BankManagerDto dto = new BankManagerDto("UpdatedManager", "UpdatedManager", "UpdatedManager", "UpdatedManager", "UpdatedManager");
+            BankManagerDto dto = new BankManagerDto("um", "um", "um", "um", "um");
             dto.Id = "1";
             BankManagerDao dao = new BankManagerDao();
 
