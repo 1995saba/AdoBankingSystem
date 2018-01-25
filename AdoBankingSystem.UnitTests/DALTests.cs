@@ -12,20 +12,25 @@ namespace AdoBankingSystem.UnitTests
         [TestMethod]
         public void BankClientDao_Create()
         {
-            // Arrange
-            BankClientDto bankClientDto = 
-                new BankClientDto("Test", "Test", "Test", "Test", "Test");
+            BankClientDto dto = new BankClientDto("qwert", "qwert", "qwert", "qwert", "qwert");
+            dto.Id = "1";
+            BankClientDao dao = new BankClientDao();
 
-            bankClientDto.Id = "2222";
+            string result = dao.Create(dto);
 
-            BankClientDao bankClientDao =
-                new BankClientDao();
+            Assert.IsTrue(dto.Id == result);
+        }
 
-            // Act
-            string result = bankClientDao.Create(bankClientDto);
+        [TestMethod]
+        public void BankManagerDao_Create()
+        {
+            BankManagerDto dto = new BankManagerDto("asd", "asd", "asd", "asd", "asd");
+            dto.Id = "1";
+            BankManagerDao dao = new BankManagerDao();
 
-            // Assert
-            Assert.IsTrue(bankClientDto.Id == result);
+            string result = dao.Create(dto);
+
+            Assert.IsTrue(dto.Id == result);
         }
 
         [TestMethod]
@@ -33,7 +38,7 @@ namespace AdoBankingSystem.UnitTests
         {
             CurrentSessionDto dto = new CurrentSessionDto()
             {
-                UserId = "1111",
+                UserId = "1001",
                 LastOperationTime = DateTime.Now,
                 SignInTime = DateTime.Now,
                 EntityStatus = EntityStatusType.IsActive,
@@ -42,6 +47,49 @@ namespace AdoBankingSystem.UnitTests
 
             CurrentSessionDao dao = new CurrentSessionDao();
             dao.Create(dto);
+        }
+
+        [TestMethod]
+        public void TransactionDao_Create()
+        {
+            TransactionDao transactionDao = new TransactionDao();
+            string idToSet = "2001";
+            string result = transactionDao.Create(new TransactionDto()
+            {
+                SenderId = "ericcart",
+                ReceiverId = "stanmarsh",
+                TransactionAmount = 666,
+                TransactionType = TransactionType.ClientToClientTransaction,
+                TransactionTime = DateTime.Now,
+                EntityStatus = EntityStatusType.IsActive,
+                CreatedTime = DateTime.Now,
+                Id = idToSet
+            });
+
+            Assert.IsTrue(result == idToSet);
+        }
+
+        [TestMethod]
+        public void BankClientDao_Read()
+        {
+            BankClientDao dao = new BankClientDao();
+            var result = dao.Read();
+
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item.ToString());
+            }
+        }
+
+        public void BankManagerDao_Read()
+        {
+            BankManagerDao dao = new BankManagerDao();
+            var result = dao.Read();
+
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item.ToString());
+            }
         }
 
         [TestMethod]
@@ -57,23 +105,102 @@ namespace AdoBankingSystem.UnitTests
         }
 
         [TestMethod]
-        public void TransactionDao_Create()
+        public void TransactionDao_Read()
         {
-            TransactionDao transactionDao = new TransactionDao();
-            string idToSet = Guid.NewGuid().ToString();
-            string result = transactionDao.Create(new TransactionDto()
-            {
-                SenderId = "Zeus",
-                ReceiverId = "Drow Ranger",
-                TransactionAmount = 6200,
-                TransactionType = TransactionType.ClientToClientTransaction,
-                TransactionTime = DateTime.Now,
-                EntityStatus = EntityStatusType.IsActive,
-                CreatedTime = DateTime.Now,
-                Id = idToSet
-            });
+            TransactionDao dao = new TransactionDao();
+            var result = dao.Read();
 
-            Assert.IsTrue(result == idToSet);
+            foreach (var item in result)
+            {
+                Debug.WriteLine(item.ToString());
+            }
+        }
+
+        [TestMethod]
+        public void BankClientDao_Update()
+        {
+            BankClientDto dto = new BankClientDto("UpdatedClient", "UpdatedClient", "UpdatedClient", "UpdatedClient", "UpdatedClient");
+            dto.Id = "1";
+            BankClientDao dao = new BankClientDao();
+
+            string result = dao.Update(dto);
+
+            Assert.IsTrue(dto.Id == result);
+        }
+
+        [TestMethod]
+        public void BankManagerDao_Update()
+        {
+            BankManagerDto dto = new BankManagerDto("UpdatedManager", "UpdatedManager", "UpdatedManager", "UpdatedManager", "UpdatedManager");
+            dto.Id = "1";
+            BankManagerDao dao = new BankManagerDao();
+
+            string result = dao.Update(dto);
+
+            Assert.IsTrue(dto.Id == result);
+        }
+
+        [TestMethod]
+        public void CurrentSessionDao_Update()
+        {
+            CurrentSessionDto dto = new CurrentSessionDto();
+            dto.UserId = "002";
+            dto.LastOperationTime = DateTime.Now;
+            dto.SignInTime = DateTime.Now;
+            dto.EntityStatus = EntityStatusType.IsActive;
+            dto.CreatedTime = DateTime.Now;
+            CurrentSessionDao dao = new CurrentSessionDao();
+
+            string result = dao.Update(dto);
+
+            Assert.IsTrue(dto.Id == result);
+        }
+
+        [TestMethod]
+        public void TransactionDao_Update()
+        {
+            TransactionDto dto = new TransactionDto();
+            dto.SenderId = "ericcart";
+            dto.ReceiverId = "stanmarsh";
+            dto.TransactionAmount = 10000;
+            dto.TransactionType = TransactionType.ClientToClientTransaction;
+            dto.TransactionTime = DateTime.Now;
+            dto.EntityStatus = EntityStatusType.IsActive;
+            dto.CreatedTime = DateTime.Now;
+            dto.Id = "123";
+            TransactionDao dao = new TransactionDao();
+
+            string result = dao.Update(dto);
+
+            Assert.IsTrue(dto.Id == result);
+        }
+
+        [TestMethod]
+        public void BankClientsDao_Delete()
+        {
+            BankClientDao dao = new BankClientDao();
+            dao.Remove("1");
+        }
+
+        [TestMethod]
+        public void BankManagerDao_Delete()
+        {
+            BankManagerDao dao = new BankManagerDao();
+            dao.Remove("1");
+        }
+
+        [TestMethod]
+        public void CurrentSessionDao_Delete()
+        {
+            CurrentSessionDao dao = new CurrentSessionDao();
+            dao.Remove("1");
+        }
+
+        [TestMethod]
+        public void TransactionDao_Delete()
+        {
+            TransactionDao dao = new TransactionDao();
+            dao.Remove("1");
         }
     }
 }
