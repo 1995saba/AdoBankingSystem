@@ -46,12 +46,15 @@
   <ItemGroup>
     <Compile Include="DAOs\BankClientDao.cs" />
     <Compile Include="DAOs\BankManagerDao.cs" />
-    <Compile Include="DAOs\OfflineDao.cs" />
     <Compile Include="DAOs\CurrentSessionDao.cs" />
     <Compile Include="DAOs\TransactionDao.cs" />
     <Compile Include="DatabaseConnectionFactory.cs" />
     <Compile Include="Interfaces\IDAO.cs" />
     <Compile Include="Interfaces\IExtendedCurrentSession.cs" />
+    <Compile Include="OfflineDAOs\BankClientOfflineDao.cs" />
+    <Compile Include="OfflineDAOs\BankManagerOfflineDao.cs" />
+    <Compile Include="OfflineDAOs\CurrentSessionOfflineDao.cs" />
+    <Compile Include="OfflineDAOs\TransactionOfflineDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
