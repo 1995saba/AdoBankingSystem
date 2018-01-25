@@ -56,6 +56,10 @@
     <Compile Include="OfflineDAOs\CurrentSessionOfflineDao.cs" />
     <Compile Include="OfflineDAOs\TransactionOfflineDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLAdapterDAOs\BankClientDao.cs" />
+    <Compile Include="SQLAdapterDAOs\BankManagerDao.cs" />
+    <Compile Include="SQLAdapterDAOs\CurrentSessionDao.cs" />
+    <Compile Include="SQLAdapterDAOs\TransactionDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstracts\" />
